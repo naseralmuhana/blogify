@@ -7,8 +7,8 @@ export const getUserByUsername = async (username: string) => {
     })
     return user
   } catch (error) {
-    console.log("GetUserByUsername")
-    console.log(error)
+    console.error("GetUserByUsername")
+    console.error(error)
     return null
   }
 }

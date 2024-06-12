@@ -19,7 +19,6 @@ export const SingleSocial = ({
 
   const handleClick = (provider: "github" | "google") => {
     signInAction({ method: "provider", provider, callbackUrl })
-    console.log({ provider })
   }
 
   return (

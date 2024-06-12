@@ -8,11 +8,22 @@ import Resend from "next-auth/providers/resend"
 import { db } from "@/db"
 import { generateUsername } from "@/lib/auth/generate-username"
 import { generateImage } from "@/lib/auth/generate-image"
-import { profiles, users } from "@/db/schema"
+import {
+  accounts,
+  profiles,
+  sessions,
+  users,
+  verificationTokens,
+} from "@/db/schema"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true,
-  adapter: DrizzleAdapter(db),
+  adapter: DrizzleAdapter(db, {
+    usersTable: users,
+    accountsTable: accounts,
+    sessionsTable: sessions,
+    verificationTokensTable: verificationTokens,
+  }),
   providers: [
     Github,
     Google,
@@ -47,6 +58,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             .set({ username, image })
             .where(eq(users.id, user.id)))
       }
+    },
+  },
+  callbacks: {
+    session({ session }) {
+      return session
     },
   },
 })
