@@ -1,8 +1,8 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { signInAction } from "@/actions/auth/signin-action"
 import { useQueryParam } from "@/hooks/use-query-param"
+import { signInAction } from "../_actions/signin-action"
 
 interface SingleSocialProps {
   children: React.ReactNode

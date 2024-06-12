@@ -7,12 +7,14 @@ import { useToggle } from "@/hooks/use-toggle"
 import { Header } from "@/components/shared/header"
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
-import { SearchBar } from "./components/search-bar"
-import { MobileSearchIconButton } from "./components/mobile-search-icon-button"
-import { WriteButton } from "./components/write-button"
-import { ThemeDropdownMenu } from "./components/theme-dropdown-menu"
-import { NotificationButton } from "./components/notification-button"
-import { UserDropdownMenu } from "./components/user-dropdown-menu"
+import { ThemeDropdownMenu } from "@/components/shared/theme-dropdown-menu"
+import {
+  MobileSearchIconButton,
+  NotificationButton,
+  SearchBar,
+  UserDropdownMenu,
+  WriteButton,
+} from "./components"
 
 export const MainHeader = () => {
   const { status, data } = useSession()

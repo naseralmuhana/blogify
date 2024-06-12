@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { MdEmail } from "react-icons/md"
 
-import { signInAction } from "@/actions/auth/signin-action"
 import { useQueryParam } from "@/hooks/use-query-param"
 import {
   Form,
@@ -16,6 +15,7 @@ import {
 } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { signInAction } from "../_actions/signin-action"
 
 const loginSchema = z.object({
   email: z
