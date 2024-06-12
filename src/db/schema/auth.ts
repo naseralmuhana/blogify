@@ -1,9 +1,11 @@
+import { relations } from "drizzle-orm"
 import {
   timestamp,
   pgTable,
   text,
   primaryKey,
   integer,
+  varchar,
 } from "drizzle-orm/pg-core"
 import type { AdapterAccountType } from "next-auth/adapters"
 
@@ -12,9 +14,30 @@ export const users = pgTable("user", {
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
   name: text("name"),
+  username: text("username"),
   email: text("email").notNull(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
+})
+
+export const usersRelations = relations(users, ({ one }) => ({
+  profile: one(profiles, { fields: [users.id], references: [profiles.userId] }),
+}))
+
+export const profiles = pgTable("profile", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  bio: text("bio"),
+  youtube: varchar("youtube", { length: 255 }),
+  instagram: varchar("instagram", { length: 255 }),
+  facebook: varchar("facebook", { length: 255 }),
+  twitter: varchar("twitter", { length: 255 }),
+  github: varchar("github", { length: 255 }),
+  website: varchar("website", { length: 255 }),
 })
 
 export const accounts = pgTable(

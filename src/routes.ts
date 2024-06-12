@@ -10,7 +10,11 @@ export const publicRoutes: string[] = ["/"]
  * These routes will redirect logged-in users to the default login redirect path.
  * @type {string[]}
  */
-export const accessRoutes: string[] = ["/login"]
+export const accessRoutes: string[] = [
+  "/login",
+  "/verify-request",
+  "/auth-error",
+]
 
 /**
  * The prefix for API routes.
