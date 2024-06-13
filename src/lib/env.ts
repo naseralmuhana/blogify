@@ -11,6 +11,8 @@ export const env = createEnv({
     AUTH_GITHUB_ID: z.string().min(1),
     AUTH_GITHUB_SECRET: z.string().min(1),
     AUTH_RESEND_KEY: z.string().min(1),
+    EDGE_STORE_ACCESS_KEY: z.string().min(1),
+    EDGE_STORE_SECRET_KEY: z.string().min(1),
   },
   client: {},
   runtimeEnv: {
@@ -22,6 +24,8 @@ export const env = createEnv({
     AUTH_GITHUB_ID: process.env.AUTH_GITHUB_ID,
     AUTH_GITHUB_SECRET: process.env.AUTH_GITHUB_SECRET,
     AUTH_RESEND_KEY: process.env.AUTH_RESEND_KEY,
+    EDGE_STORE_ACCESS_KEY: process.env.EDGE_STORE_ACCESS_KEY,
+    EDGE_STORE_SECRET_KEY: process.env.EDGE_STORE_SECRET_KEY,
   },
 
   /**

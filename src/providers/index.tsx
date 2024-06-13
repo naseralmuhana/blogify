@@ -2,6 +2,7 @@ import { ReactNode } from "react"
 
 import { ThemeProvider } from "./theme-provider"
 import { SessionProvider } from "./session-provider"
+import { EdgeStoreProvider } from "@/lib/edgestore/client"
 
 interface ProvidersProps {
   children: ReactNode
@@ -10,7 +11,9 @@ interface ProvidersProps {
 export const Providers = ({ children }: ProvidersProps) => {
   return (
     <SessionProvider>
-      <ThemeProvider>{children}</ThemeProvider>
+      <ThemeProvider>
+        <EdgeStoreProvider>{children}</EdgeStoreProvider>
+      </ThemeProvider>
     </SessionProvider>
   )
 }
