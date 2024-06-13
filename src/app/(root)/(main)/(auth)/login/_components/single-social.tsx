@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { useQueryParam } from "@/hooks/use-query-param"
-import { signInAction } from "../_actions/signin-action"
+import { signInAction } from "./login-form/actions/signin-action"
 
 interface SingleSocialProps {
   children: React.ReactNode

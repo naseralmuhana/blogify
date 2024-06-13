@@ -1,9 +1,11 @@
 "use client"
 
 import { Form, FormField } from "@/components/ui/form"
-import { TitleField, BannerField, ContentField } from "./components"
-import { useEditorForm } from "./hooks/use-editor-form"
 import { Separator } from "@/components/ui/separator"
+import { useEditorForm } from "./hooks/use-editor-form"
+import { BannerField } from "./components/banner-field"
+import { TitleField } from "./components/title-field"
+import { ContentField } from "./components/content-field"
 
 export type EditorFieldsType = {
   bannerUrl: string

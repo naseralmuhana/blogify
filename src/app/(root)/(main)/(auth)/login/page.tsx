@@ -2,10 +2,10 @@ import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
 import { Suspense } from "react"
 
-import { LoginForm } from "./_components/login-form"
 import { LoginFormSkeleton } from "./_components/login-form-skeleton"
 import { SingleSocial } from "./_components/single-social"
 import { SingleSocialSkeleton } from "./_components/single-social-skeleton"
+import { LoginForm } from "./_components/login-form"
 
 export default function LoginPage() {
   return (

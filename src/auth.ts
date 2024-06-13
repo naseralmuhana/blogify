@@ -28,7 +28,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Github,
     Google,
     Resend({
-      from: "no-replay@naseralmuhana.com",
+      from: "mail@naseralmuhana.com",
     }),
   ],
   pages: {
