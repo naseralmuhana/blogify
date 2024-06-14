@@ -14,7 +14,7 @@ type State = {
 
 type Action = {
   setBlog: (blog: BlogType) => void
-  setIsPublishDialogOpen: () => void
+  setIsPublishDialogOpen: (open: boolean) => void
   reset: () => void
 }
 
@@ -32,7 +32,7 @@ const initialState: State = {
 export const useEditorStore = create<State & Action>((set) => ({
   ...initialState,
   setBlog: (blog) => set((state) => ({ blog: { ...state.blog, ...blog } })),
-  setIsPublishDialogOpen: () => set(() => ({ isPublishDialogOpen: true })),
+  setIsPublishDialogOpen: (open) => set(() => ({ isPublishDialogOpen: open })),
   reset: () => {
     set(initialState)
   },

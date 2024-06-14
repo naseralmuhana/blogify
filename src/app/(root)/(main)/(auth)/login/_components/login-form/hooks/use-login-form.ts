@@ -1,32 +1,37 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 import { signInAction } from "../actions/signin-action"
 import { useQueryParam } from "@/hooks/use-query-param"
+import { loginFormSchema } from "../schema"
+import { useGlobalStore } from "@/store"
 
-const loginSchema = z.object({
-  email: z
-    .string({ required_error: "Email is required." })
-    .min(1, "Email is required.")
-    .email("Invalid email address."),
-})
-
-type LoginFormType = z.infer<typeof loginSchema>
+type LoginFormType = z.infer<typeof loginFormSchema>
 
 export const useLoginForm = () => {
+  const setIsLoading = useGlobalStore((state) => state.setIsLoading)
+
   const callbackUrl = useQueryParam()
 
   const form = useForm<LoginFormType>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(loginFormSchema),
     defaultValues: { email: "" },
   })
 
   const onSubmit = async (values: LoginFormType) => {
     const { email } = values
-    signInAction({ method: "resend", email, callbackUrl })
+
+    try {
+      setIsLoading(true)
+      await signInAction({ method: "resend", email, callbackUrl })
+    } catch (error) {
+      console.error("useLoginForm", error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return { form, onSubmit }

@@ -10,7 +10,7 @@ import { ContentField } from "./components/content-field"
 export type EditorFieldsType = {
   bannerUrl: string
   title: string
-  content: string
+  content?: string
 }
 
 export const EditorForm = () => {

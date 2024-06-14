@@ -17,6 +17,7 @@ export const TitleField = ({ field }: TitleFieldProps) => {
   const { onChange, value, ...rest } = field
 
   const { title } = useEditorStore((state) => state.blog)
+  const setBlog = useEditorStore((state) => state.setBlog)
 
   const handleTitleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     // To prevent the enter key to go to new line
@@ -29,6 +30,7 @@ export const TitleField = ({ field }: TitleFieldProps) => {
     textareaEle.style.height = "auto"
     textareaEle.style.height = textareaEle.scrollHeight + "px"
 
+    setBlog({ title: textareaEle.value })
     onChange(textareaEle.value)
   }
 
