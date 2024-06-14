@@ -6,25 +6,32 @@ import {
   primaryKey,
   integer,
   varchar,
+  index,
 } from "drizzle-orm/pg-core"
 import type { AdapterAccountType } from "next-auth/adapters"
 
-export const users = pgTable("user", {
-  id: text("id")
-    .primaryKey()
-    .$defaultFn(() => crypto.randomUUID()),
-  name: text("name"),
-  username: text("username"),
-  email: text("email").notNull(),
-  emailVerified: timestamp("emailVerified", { mode: "date" }),
-  image: text("image"),
-})
+export const users = pgTable(
+  "users",
+  {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+    name: text("name"),
+    username: text("username"),
+    email: text("email").notNull(),
+    emailVerified: timestamp("emailVerified", { mode: "date" }),
+    image: text("image"),
+  },
+  (users) => ({
+    usernameIndex: index("username_index").on(users.username),
+  }),
+)
 
 export const usersRelations = relations(users, ({ one }) => ({
   profile: one(profiles, { fields: [users.id], references: [profiles.userId] }),
 }))
 
-export const profiles = pgTable("profile", {
+export const profiles = pgTable("profiles", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
@@ -41,7 +48,7 @@ export const profiles = pgTable("profile", {
 })
 
 export const accounts = pgTable(
-  "account",
+  "accounts",
   {
     userId: text("userId")
       .notNull()
@@ -64,7 +71,7 @@ export const accounts = pgTable(
   }),
 )
 
-export const sessions = pgTable("session", {
+export const sessions = pgTable("sessions", {
   sessionToken: text("sessionToken").primaryKey(),
   userId: text("userId")
     .notNull()
@@ -73,7 +80,7 @@ export const sessions = pgTable("session", {
 })
 
 export const verificationTokens = pgTable(
-  "verificationToken",
+  "verificationTokens",
   {
     identifier: text("identifier").notNull(),
     token: text("token").notNull(),
