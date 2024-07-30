@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @import url(@/styles/light.css);
+  @import url(@/styles/dark.css);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply overflow-x-hidden;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  /* svg {
+    @apply size-[19px];
+  } */
+}
+
+@layer utilities {
+  .container {
+    @apply mx-auto w-full px-[5vw] py-3 md:px-[3vw] lg:px-[5vw];
+  }
+  .min-h-cover {
+    @apply min-h-[calc(100vh-65px)];
+  }
+  .show {
+    @apply pointer-events-auto translate-y-0 opacity-100;
+  }
+  .hide {
+    @apply pointer-events-none -translate-y-5 opacity-0;
+  }
+}
